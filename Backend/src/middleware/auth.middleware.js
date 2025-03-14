@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import User from "../models/user.model";
+import User from "../models/user.model.js";
 
 export const protectRoute = async (req,res,next) =>{
     try {
@@ -8,7 +8,7 @@ export const protectRoute = async (req,res,next) =>{
             return res.status(401).json({message: "Unauthorized - No Tokenn provided"});
         }
 
-        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        const decoded = jwt.verify(tokenvariable, process.env.JWT_SECRET);
 
         if(!decoded){
             return res.status(401).json({message: "Unauthorized: Invalid Token"});
