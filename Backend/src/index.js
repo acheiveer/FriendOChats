@@ -6,9 +6,12 @@ import messageRoutes from "./routes/message.route.js";
 import { connectDB } from "./lib/db.js";
 import bodyParser from "body-parser";
 import cors from "cors";
+import { app, server } from "./lib/socket.js";
+
 
 dotenv.config();
-const app = express();
+// const app = express();
+
 // app.use(express.json());
 
 // Increase request size limit
@@ -27,7 +30,8 @@ app.use("/api/auth",authRoutes);
 app.use("/api/messages",messageRoutes);
 
 const port= process.env.PORT;
-app.listen(port, ()=>{
+
+server.listen(port, ()=>{
     console.log(`server is running on port ${port}`);
     connectDB();
 })
