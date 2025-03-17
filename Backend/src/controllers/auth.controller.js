@@ -91,7 +91,7 @@ export const updateProfile = async (req,res) =>{
         }
 
         const uploadResposne  = await cloudinary.uploader.upload(profilePic);
-        const updateUser = await User.findByIdAndUpdate(userId,{profilePic:uploadResposne.secure_url},{new:true});
+        const updateUser = await User.findByIdAndUpdate(userId,{profilePic:uploadResposne.secure_url},{new:true}).select("-password");
 
         res.status(200).json(updateUser);
 
