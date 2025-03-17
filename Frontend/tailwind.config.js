@@ -10,6 +10,12 @@ export default {
   },
   //@ts-ignore
   plugins: [require("daisyui")],
+  daisyui:{
+    themes: [
+      "light",
+      "dark",
+    ],
+  }
   
   
 }

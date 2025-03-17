@@ -5,13 +5,15 @@ import LoginPage from "./pages/LoginPage";
 import SignUpPage from "./pages/SignUpPage";
 import SettingsPage from "./pages/SettingsPage";
 import ProfilePage from "./pages/ProfilePage";
-import { useAuthStore } from "./store/useAuthStore";
+import { useAuthStore } from "./store/useAuthStore.js";
+import { useThemeStore } from "./store/UseThemeStore";
 import { useEffect } from "react";
 import {Loader} from "lucide-react";
 import { Toaster } from "react-hot-toast";
 
 function App() {
   const { authUser, checkAuth, isCheckingAuth, onlineUsers } = useAuthStore();
+  const {theme} = useThemeStore();
   useEffect(() => {
     checkAuth();
   }, [checkAuth]);
@@ -27,7 +29,7 @@ function App() {
 
 
   return (
-    <div>
+    <div data-theme={theme}>
      <Navbar/>
      <Routes>
      <Route path="/" element={authUser ? <HomePage /> : <Navigate to="/login" />} />
